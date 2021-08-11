@@ -13,6 +13,11 @@ def get_pred_price(loaded_model,inch,restau,cheese,musroom,spicy):
 
 loaded_model = pickle.load(open(filename, 'rb'))
 
+def convert_to_cad(price):
+    price = price*0.015
+    return price
+
+
 predict = 0
 restuarant = 'None'
 yesno = {'yes':1,'no':0}
@@ -33,6 +38,7 @@ def my_form_post():
         #print(size,restuarant,extr_cheese,extr_mushroom,extr_spicy
             price = get_pred_price(loaded_model,size,restuarant,extr_cheese,extr_mushroom,extr_spicy)
             predict = price[0]
+            #predict = convert_to_cad(price)
         print(predict)
     # Render the sign-up page
     return render_template('index.html', prediction_text='Price of the Pizza from Restaurant {} is $ {}'.format(restuarant,predict))
