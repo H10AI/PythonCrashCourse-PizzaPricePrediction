@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template
 import pickle
 import numpy as np
+from functions_script import convert_to_cad
 filename = 'pizza_price_final.sav'
 app = Flask(__name__)
 def get_pred_price(loaded_model,inch,restau,cheese,musroom,spicy):
@@ -13,9 +14,6 @@ def get_pred_price(loaded_model,inch,restau,cheese,musroom,spicy):
 
 loaded_model = pickle.load(open(filename, 'rb'))
 
-def convert_to_cad(price):
-    price = price*0.015
-    return price
 
 
 predict = 0
